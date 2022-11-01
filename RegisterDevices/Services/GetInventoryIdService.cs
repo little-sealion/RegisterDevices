@@ -23,7 +23,7 @@ namespace RegisterDevices.Services
         public async Task<SingleDeviceResponse> GetSingleInventoryId(string deviceId)
         {
             HttpRequestMessage request = new HttpRequestMessage();
-            request.RequestUri = new Uri($"assetId/{deviceId}");
+            request.RequestUri = new Uri($"http://tech-assessment.vnext.com.au/api/devices/assetId/{deviceId}");
             request.Method = HttpMethod.Get;
             request.Headers.Add("x-functions-key", _inventoryApi.GetRequestApiKey);
 
@@ -41,7 +41,7 @@ namespace RegisterDevices.Services
                 deviceIds = deviceIdArray
             };
             HttpRequestMessage request = new HttpRequestMessage();
-            request.RequestUri = new Uri("assetId");
+            request.RequestUri = new Uri("http://tech-assessment.vnext.com.au/api/devices/assetId");
             request.Method = HttpMethod.Post;
             request.Content = JsonContent.Create(data);
             request.Headers.Add("x-functions-key", _inventoryApi.PostRequestApiKey);

@@ -49,7 +49,7 @@ namespace RegisterDevices
             services.AddSingleton(inventoryApiConfig);
 
             services
-                .AddHttpClient(GetInventoryIdService.HttpClientName, client => { client.BaseAddress = inventoryApiConfig.BaseUrl; })
+                .AddHttpClient(GetInventoryIdService.HttpClientName )
                 .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(2, _ => TimeSpan.FromMilliseconds(600)));
         }
 

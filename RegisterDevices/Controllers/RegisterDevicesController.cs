@@ -28,6 +28,7 @@ namespace RegisterDevices.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> Post([FromBody] RegisterDevicesRequest request)
         {
+           
             var devicesWithoutAssetId = request.devices;
             var deviceIds = devicesWithoutAssetId.Select(device => device.id).ToArray();
             string result;
@@ -47,24 +48,18 @@ namespace RegisterDevices.Controllers
             else
             {
                 var response = await _getInventoryIdService.GetMultipleInventoryId(deviceIds);
-                var query1 = from o in devicesWithoutAssetId
-                             select new DeviceInfo
-                             {
-                                 DeviceId = o.id,
-                                 Name = o.Name,
-                                 Location = o.location,
-                                 Type = o.type
-                             };
+                var devices = from o in devicesWithoutAssetId
+                              join a in response.devices
+                              on o.id equals a.deviceId
+                              select new DeviceInfo
+                              {
+                                  DeviceId = o.id,
+                                  Name = o.Name,
+                                  Location = o.location,
+                                  Type = o.type,
+                                  AssetId = a.assetId
+                              };
 
-                var query2 = from o in response.devices
-                             select new DeviceInfo
-                             {
-                                 DeviceId = o.deviceId,
-                                 AssetId = o.assetId
-                             };
-                
-                var assetIds = response.devices;
-                var devices = query1.Concat(query2);
                 result = await _deviceRepository.InsertDevices(devices);
             }
 

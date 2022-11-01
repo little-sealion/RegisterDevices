@@ -3,9 +3,9 @@ namespace RegisterDevices.Models
 {
     public class DeviceInfoWithoutAssetId
     {
-        public string id { get; }
-        public string Name { get; }
-        public string location { get; }
-        public string type { get; }
+        public string id { get; set; }
+        public string Name { get; set; }
+        public string location { get; set; }
+        public string type { get; set; }
     }
 }

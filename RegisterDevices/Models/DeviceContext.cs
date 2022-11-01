@@ -10,6 +10,6 @@ namespace RegisterDevices.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<DeviceInfo> Devices;
+        public DbSet<DeviceInfo> Devices { get; set; }
     }
 }

@@ -5,6 +5,6 @@ namespace RegisterDevices.Models
 {
     public class MultipleDeviceResponse
     {
-        public IEnumerable<SingleDeviceResponse> devices { get;}
+        public IEnumerable<SingleDeviceResponse> devices { get; set; }
     }
 }

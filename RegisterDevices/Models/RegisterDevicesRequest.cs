@@ -5,7 +5,7 @@ namespace RegisterDevices.Models
 {
     public class RegisterDevicesRequest
     {
-        public string correlationId { get; }
-        public IEnumerable<DeviceInfoWithoutAssetId> devices { get;}
+        public string correlationId { get; set; }
+        public DeviceInfoWithoutAssetId[] devices { get; set; }
     }
 }

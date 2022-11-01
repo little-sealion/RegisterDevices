@@ -27,8 +27,6 @@ namespace RegisterDevices.Repository
             _context.Devices.AddRange(devices);
             await _context.SaveChangesAsync();
             return devices.Last().DeviceId;
-        }
-
-   
+        }   
     }
 }

@@ -19,7 +19,7 @@ namespace RegisterDevices.Repository
         public async Task<string> InsertDevice(DeviceInfo device)
         {
 
-            var result = await _context.Database.ExecuteSqlRawAsync($"InsertOrUpdateDevice N'{device.DeviceId}',N'{device.Name}',N'{device.Location}',N'{device.Type}',N'{device.AssetId}'");
+            await insertDevice(device);
             return $"device with deviceId:{device.DeviceId} has been inserted";
         }
 
@@ -27,10 +27,14 @@ namespace RegisterDevices.Repository
         {
             foreach (var device in devices)
             {
-                await _context.Database.ExecuteSqlRawAsync($"InsertOrUpdateDevice N'{device.DeviceId}',N'{device.Name}',N'{device.Location}',N'{device.Type}',N'{device.AssetId}'");
+                await insertDevice(device);
             }
             return $"devices from deviceId:{devices.First().DeviceId} to deviceId:{devices.Last().DeviceId} has been inserted";
         } 
    
+        private Task<int> insertDevice(DeviceInfo device)
+        {
+           return _context.Database.ExecuteSqlRawAsync($"InsertOrUpdateDevice N'{device.DeviceId}',N'{device.Name}',N'{device.Location}',N'{device.Type}',N'{device.AssetId}'");
+        }
     }
 }

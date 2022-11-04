@@ -37,13 +37,17 @@ namespace RegisterDevices.Controllers
             {
                 var theDevice = devicesWithoutAssetId.First();
                 var response = await _getInventoryIdService.GetSingleInventoryId(deviceIds[0]);
-                
-                result = await _deviceRepository.InsertDevice
-                    (
-                        new DeviceInfo
-                        {DeviceId = theDevice.id,Name=theDevice.Name,Location = theDevice.location,
-                        Type=theDevice.type,AssetId=response.assetId
-                        });
+                var device = new DeviceInfo
+                {
+                    DeviceId = theDevice.id,
+                    Name = theDevice.Name,
+                    Location = theDevice.location,
+                    Type = theDevice.type,
+                    AssetId = response.assetId
+                };
+
+                result = await _deviceRepository.InsertDevice(device);
+                                         
             }
             else
             {

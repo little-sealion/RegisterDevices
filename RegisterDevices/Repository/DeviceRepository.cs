@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RegisterDevices.Models;
 
 namespace RegisterDevices.Repository
@@ -17,16 +18,19 @@ namespace RegisterDevices.Repository
 
         public async Task<string> InsertDevice(DeviceInfo device)
         {
-            _context.Devices.Add(device);
-            await _context.SaveChangesAsync();
-            return device.DeviceId;
+
+            var result = await _context.Database.ExecuteSqlRawAsync($"InsertOrUpdateDevice N'{device.DeviceId}',N'{device.Name}',N'{device.Location}',N'{device.Type}',N'{device.AssetId}'");
+            return $"device with deviceId:{device.DeviceId} has been inserted";
         }
 
         public async Task<string> InsertDevices(IEnumerable<DeviceInfo> devices)
         {
-            _context.Devices.AddRange(devices);
-            await _context.SaveChangesAsync();
-            return devices.Last().DeviceId;
-        }   
+            foreach (var device in devices)
+            {
+                await _context.Database.ExecuteSqlRawAsync($"InsertOrUpdateDevice N'{device.DeviceId}',N'{device.Name}',N'{device.Location}',N'{device.Type}',N'{device.AssetId}'");
+            }
+            return $"devices from deviceId:{devices.First().DeviceId} to deviceId:{devices.Last().DeviceId} has been inserted";
+        } 
+   
     }
 }

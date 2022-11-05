@@ -38,6 +38,9 @@
     <None Update="SampleData\1000SampleDevices.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="SampleData\SampleData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegisterDevices\RegisterDevices.csproj" />

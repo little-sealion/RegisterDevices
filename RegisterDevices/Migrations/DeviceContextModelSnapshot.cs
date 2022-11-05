@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegisterDevices.Models;
 
+#nullable disable
+
 namespace RegisterDevices.Migrations
 {
     [DbContext(typeof(DeviceContext))]
@@ -14,9 +16,10 @@ namespace RegisterDevices.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("RegisterDevices.Models.DeviceInfo", b =>
                 {
@@ -37,7 +40,7 @@ namespace RegisterDevices.Migrations
 
                     b.HasKey("DeviceId");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Devices", (string)null);
                 });
 #pragma warning restore 612, 618
         }

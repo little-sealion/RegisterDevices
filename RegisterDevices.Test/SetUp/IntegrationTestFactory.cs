@@ -21,7 +21,7 @@ namespace RegisterDevices.Test.SetUp
             _container = new TestcontainersBuilder<MsSqlTestcontainer>()
                 .WithDatabase(new MsSqlTestcontainerConfiguration
                 { Password = "localdevpassword#123"})
-                .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
+                .WithImage("mcr.microsoft.com/mssql/server:2019-latest")
                 .WithCleanUp(true)
                 .Build();
         }

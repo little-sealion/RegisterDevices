@@ -29,11 +29,9 @@
     <None Remove="Microsoft.AspNetCore.Mvc.Testing" />
     <None Remove="FluentAssertions" />
     <None Remove="Testcontainers" />
-    <None Remove="SampleData\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SetUp\" />
-    <Folder Include="SampleData\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegisterDevices\RegisterDevices.csproj" />

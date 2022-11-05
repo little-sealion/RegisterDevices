@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
+    <AssemblyName>RegisterDevices.Test</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,9 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SetUp\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RegisterDevices\RegisterDevices.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="SampleData\1000SampleDevices.json">
